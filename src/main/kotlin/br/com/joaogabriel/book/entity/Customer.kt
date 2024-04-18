@@ -9,7 +9,7 @@ import java.time.LocalDateTime
 import java.util.UUID
 
 @Entity
-@Table
+@Table(name = "tb_customer")
 data class Customer(
     @Id @GeneratedValue(strategy = GenerationType.UUID)
     private val id: UUID,
@@ -24,7 +24,13 @@ data class Customer(
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private val birthOfDate: LocalDate,
     private val isActive: Boolean,
+    @Embedded
+    private val contact: Contact,
+    @Embedded
+    private val address: Address,
     @CreatedDate
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private val createdIn: LocalDateTime
-) : Serializable
+) : Serializable {
+
+}

@@ -1,7 +1,8 @@
 package br.com.joaogabriel.book.entity
 
+import jakarta.persistence.Embeddable
 
-
+@Embeddable
 data class Address(
     private val zipCode: String,
     private val publicPlace: String,
