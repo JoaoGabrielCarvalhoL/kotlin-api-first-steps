@@ -1,5 +1,7 @@
 package br.com.joaogabriel.book.entity
 
+import br.com.joaogabriel.book.entity.embeddable.Address
+import br.com.joaogabriel.book.entity.embeddable.Contact
 import jakarta.persistence.*
 import org.springframework.data.annotation.CreatedDate
 import org.springframework.format.annotation.DateTimeFormat
@@ -11,26 +13,105 @@ import java.util.UUID
 @Entity
 @Table(name = "tb_customer")
 data class Customer(
-    @Id @GeneratedValue(strategy = GenerationType.UUID)
-    private val id: UUID,
+
     @Column(nullable = false, unique = true, updatable = false)
-    private val username: String,
+    private var username: String,
     @Column(nullable = false, unique = true)
-    private val email: String,
+    private var email: String,
     @Column(nullable = false)
-    private val hashPassword: String,
+    private var hashPassword: String,
     @Column(nullable = false)
-    private val name: String,
+    private var name: String,
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-    private val birthOfDate: LocalDate,
-    private val isActive: Boolean,
+    private var birthOfDate: LocalDate,
     @Embedded
-    private val contact: Contact,
+    private var contact: Contact,
     @Embedded
-    private val address: Address,
+    private var address: Address,
+
+    ) : Serializable {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private lateinit var id: UUID
+    private var isActive: Boolean = true
+
     @CreatedDate
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-    private val createdIn: LocalDateTime
-) : Serializable {
+    private lateinit var createdIn: LocalDateTime
 
+    constructor(
+        username: String, email: String, hashPassword: String, name: String,
+        birthOfDate: LocalDate, contact: Contact, address: Address, id:UUID
+    ) : this(username, email, hashPassword, name, birthOfDate, contact, address) {
+        this.id = id;
+    }
+
+    fun getId(): UUID {
+        return id
+    }
+
+    fun setId(id: UUID): Unit {
+        this.id = id
+    }
+
+    fun getUsername(): String {
+        return username
+    }
+
+    fun setUsername(username: String) : Unit {
+        this.username = username
+    }
+
+    fun getEmail(): String {
+        return email;
+    }
+
+    fun setEmail(email: String): Unit {
+        this.email = email
+    }
+
+    fun getHashPassword(): String {
+        return hashPassword
+    }
+
+    fun setHashPassword(hashPassword: String): Unit {
+        this.hashPassword = hashPassword;
+    }
+
+    fun getName(): String {
+        return name
+    }
+
+    fun setName(name: String) : Unit {
+        this.name = name
+    }
+
+    fun getBirthOfDate(): LocalDate {
+        return birthOfDate
+    }
+
+    fun setBirthOfDate(birthOfDate: LocalDate) : Unit {
+        this.birthOfDate = birthOfDate
+    }
+
+    fun getAddress(): Address {
+        return address
+    }
+
+    fun setAddress(address: Address) : Unit {
+        this.address = address
+    }
+
+    fun getContact(): Contact {
+        return contact
+    }
+
+    fun setContact(contact: Contact) : Unit {
+        this.contact = contact
+    }
+
+    fun getCreatedIn(): LocalDateTime {
+        return createdIn
+    }
 }

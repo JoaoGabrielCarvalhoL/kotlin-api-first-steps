@@ -7,12 +7,30 @@ import java.util.*
 @Entity
 @Table(name = "tb_author")
 data class Author(
-    @Id @GeneratedValue(strategy = GenerationType.UUID)
-    private val id: UUID,
     @Column(nullable = false)
-    private val name: String,
-    @OneToMany(mappedBy = "author")
-    private val books: MutableList<Book>
+    private val name: String
 ) : Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private lateinit var id: UUID
+
+    @OneToMany(mappedBy = "author")
+    private lateinit var books: MutableList<Book>
+
+    constructor(id: UUID, name: String) : this(name) {
+        this.id = id;
+    }
+
+    fun getId(): UUID {
+        return id
+    }
+
+    fun getName(): String {
+        return name
+    }
+
+    fun getBooks(): MutableList<Book> {
+        return books
+    }
 
 }

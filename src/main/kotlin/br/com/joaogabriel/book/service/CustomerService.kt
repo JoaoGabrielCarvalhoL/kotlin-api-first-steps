@@ -1,6 +1,6 @@
 package br.com.joaogabriel.book.service
 
-import br.com.joaogabriel.book.payload.response.CustomerResponse
+import br.com.joaogabriel.book.payload.response.customer.CustomerResponse
 import java.util.UUID
 
 interface CustomerService {

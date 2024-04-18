@@ -1,4 +1,4 @@
-package br.com.joaogabriel.book.entity
+package br.com.joaogabriel.book.entity.embeddable
 
 import jakarta.persistence.Embeddable
 

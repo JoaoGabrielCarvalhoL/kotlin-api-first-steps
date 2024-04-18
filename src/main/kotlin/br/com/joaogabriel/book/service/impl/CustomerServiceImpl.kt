@@ -1,6 +1,6 @@
 package br.com.joaogabriel.book.service.impl
 
-import br.com.joaogabriel.book.payload.response.CustomerResponse
+import br.com.joaogabriel.book.payload.response.customer.CustomerResponse
 import br.com.joaogabriel.book.repository.CustomerRepository
 import br.com.joaogabriel.book.service.CustomerService
 import org.jboss.logging.Logger
