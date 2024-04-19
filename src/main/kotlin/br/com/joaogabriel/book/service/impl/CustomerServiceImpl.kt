@@ -23,4 +23,12 @@ class CustomerServiceImpl(val customerRepository: CustomerRepository) : Customer
     override fun delete(id: UUID) {
         TODO("Not yet implemented")
     }
+
+    override fun existsByEmail(email: String): Boolean {
+        return !this.customerRepository.existsByEmail(email)
+    }
+
+    override fun existsByUsername(username: String): Boolean {
+        return !this.customerRepository.existsByUsername(username)
+    }
 }

@@ -10,4 +10,8 @@ interface CustomerService {
     fun findById(): CustomerResponse
 
     fun delete(id: UUID): Unit
+
+    fun existsByEmail(email: String) : Boolean
+
+    fun existsByUsername(username: String) : Boolean
 }
